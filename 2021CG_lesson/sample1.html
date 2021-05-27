@@ -24,36 +24,48 @@
   
     // シーンを作成
     var scene = new THREE.Scene();
+
+    // フォグを設定
+    scene.fog = new THREE.fog(0x000000,50,2000);
   
     // カメラを作成
-    var camera = new THREE.PerspectiveCamera(45, width / height, 1, 1000);
+    var camera = new THREE.PerspectiveCamera(45, width / height);
+    camera.position.set(0,0,+1000);
   
-    // 箱を作成
-    var geometry = new THREE.BoxGeometry(1, 1, 1);
-    var material = new THREE.MeshPhongMaterial({ color: 0x00ff00 });
-    var box = new THREE.Mesh(geometry, material);
-    box.position.z = -5;
-    scene.add(box);
+    // グループ作成
+    var group = new THREE.Group();
+    scene.add(group);
+    var geometry = new THREE.SphereGeometry(50,50,50);
+    var material = new THREE.MeshStandardMaterial();
+
+    for(let i = 0; i < 1000; i++){
+      var mesh = new THREE.Mesh(geometry,material);
+      mesh.position.x = (Math.random() - 0.5) * 2000;
+      mesh.position.y = (Math.random() - 0.5) * 2000;
+      mesh.position.z = (Math.random() - 0.5) * 2000;
+      mesh.rotation.x = Math.random() * 2 * Math.PI;
+      mesh.rotation.y = Math.random() * 2 * Math.PI;
+      mesh.rotation.z = Math.random() * 2 * Math.PI;
+      //グループに格納する
+      group.add(mesh);
+    }
+    // 光源
+    scene.add(new THREE.DirectionalLight(0xff0000, 2)); // 平行光源
+    scene.add(new THREE.AmbientLight(0x00ffff)); // 環境光源
+
   
-    // 平行光源
-    var directionalLight = new THREE.DirectionalLight(0x00ff00);
-    directionalLight.position.set(1, 1, 1);
-    // シーンに追加
-    scene.add(directionalLight);
-  
-    // 初回実行
-    var update = function() {
-      requestAnimationFrame(update);
-  
-      // 箱を回転させる
-      box.rotation.x += 0.01;
-      box.rotation.y += 0.01;
-  
-      renderer.render(scene, camera);
-    };
-    update();
+     // 毎フレーム時に実行されるループイベントです
+     tick();
+
+    function tick() {
+  // グループを回す
+      group.rotateY(0.01);
+      renderer.render(scene, camera); // レンダリング
+      requestAnimationFrame(tick);
+    }
+    
   }
-  window.addEventListener('DOMContentLoaded', init);
+  
 </script>
 </body>
 </html>
