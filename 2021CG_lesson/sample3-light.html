@@ -32,7 +32,7 @@
         // グループを作成
         const group = new THREE.Group();
         scene.add(group);
-        const geometry = new THREE.SphereGeometry(50, 50, 50);
+        const geometry = new THREE.SphereBufferGeometry(50, 50, 50);
         const material = new THREE.MeshStandardMaterial();
 
         for (let i = 0; i < 1000; i++) {
@@ -46,10 +46,7 @@
           // グループに格納する
           group.add(mesh);
         }
-        for (let i = 1000; i >= 0; i--){
-          const mesh = new THREE.Mesh(geometry, material);
-          group.add(mesh);
-        }
+        
 
         // 光源
         scene.add(new THREE.DirectionalLight(0xff0000, 2)); // 平行光源
