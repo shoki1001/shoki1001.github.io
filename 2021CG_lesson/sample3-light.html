@@ -33,7 +33,7 @@
         const group = new THREE.Group();
         scene.add(group);
         const geometry = new THREE.SphereBufferGeometry(50, 50, 50);
-        const material = new THREE.MeshStandardMaterial();
+        const material = new THREE.MeshStandardMaterial({color: 0xA63744});
 
         for (let i = 0; i < 600; i++) {
           const mesh = new THREE.Mesh(geometry, material);
