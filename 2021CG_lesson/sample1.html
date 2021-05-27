@@ -35,7 +35,7 @@
     // グループ作成
     var group = new THREE.Group();
     scene.add(group);
-    var geometry = new THREE.SphereGeometry(50,50,50);
+    var geometry = new THREE.SphereBufferGeometry(50,50,50);
     var material = new THREE.MeshStandardMaterial();
 
     for(let i = 0; i < 1000; i++){
@@ -63,9 +63,9 @@
       renderer.render(scene, camera); // レンダリング
       requestAnimationFrame(tick);
     }
-    
+    update();
   }
-  
+  window.addEventListener('DOMContentLoaded', init);
 </script>
 </body>
 </html>
