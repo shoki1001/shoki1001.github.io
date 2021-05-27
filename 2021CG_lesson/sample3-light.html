@@ -23,7 +23,7 @@
         const scene = new THREE.Scene();
 
         // フォグを設定
-        scene.fog = new THREE.Fog(0xA63744, 50, 2000);
+        scene.fog = new THREE.Fog(0x00ffff, 50, 2000);
 
 
         // カメラを作成
@@ -34,7 +34,7 @@
         const group = new THREE.Group();
         scene.add(group);
         const geometry = new THREE.SphereBufferGeometry(50, 50, 50);
-        const material = new THREE.MeshStandardMaterial({color: 0xA63744});
+        const material = new THREE.MeshStandardMaterial({color: 0xA63744, roughness:0.5});
 
         for (let i = 0; i < 600; i++) {
           const mesh = new THREE.Mesh(geometry, material);
