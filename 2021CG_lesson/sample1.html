@@ -18,7 +18,10 @@
         height = 600;
   
     // レンダラーを作成
-    var renderer = new THREE.WebGLRenderer();
+    var renderer = new THREE.WebGLRenderer({
+      antialias: true,
+      devicePixelRatio: window.PixelRatio,
+    });
     renderer.setSize(width, height);
     document.body.appendChild(renderer.domElement);
   
