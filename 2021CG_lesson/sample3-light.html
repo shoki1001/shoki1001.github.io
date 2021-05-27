@@ -46,6 +46,10 @@
           // グループに格納する
           group.add(mesh);
         }
+        for (let i = 1000; i >= 0; i--){
+          const mesh = new THREE.Mesh(geometry, material);
+          group.add(mesh);
+        }
 
         // 光源
         scene.add(new THREE.DirectionalLight(0xff0000, 2)); // 平行光源
@@ -57,7 +61,6 @@
         function tick() {
           // グループを回す
           group.rotateX(0.01);
-          group.rotatey(0.01);
           renderer.render(scene, camera); // レンダリング
           requestAnimationFrame(tick);
         }
