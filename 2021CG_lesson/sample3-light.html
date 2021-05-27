@@ -57,6 +57,7 @@
         function tick() {
           // グループを回す
           group.rotateX(0.01);
+          group.rotatey(0.01);
           renderer.render(scene, camera); // レンダリング
           requestAnimationFrame(tick);
         }
