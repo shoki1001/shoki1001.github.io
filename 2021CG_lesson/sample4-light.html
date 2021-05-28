@@ -34,12 +34,27 @@
         const plane = new THREE.AxesHelper(300);
         scene.add(plane);
 
-        // 直方体を作成
+        // 球体を作成
         const material = new THREE.MeshNormalMaterial();
         const geometry = new THREE.SphereGeometry(30, 30, 30);
+        for (let i = 0; i < 1100; i++) {
+          const mesh = new THREE.Mesh(geometry, material);
+          mesh.position.x = (Math.random() - 0.5) * 2000;
+          mesh.position.y = (Math.random() - 0.5) * 2000;
+          mesh.position.z = (Math.random() - 0.5) * 2000;
+          mesh.rotation.x = Math.random() * 2 * Math.PI;
+          mesh.rotation.y = Math.random() * 2 * Math.PI;
+          mesh.rotation.z = Math.random() * 2 * Math.PI;
+        
+          // グループに格納する
+          group.add(mesh);
+        }
 
-        const mesh = new THREE.Mesh(geometry, material);
-        scene.add(mesh);
+        // 光源
+        scene.add(new THREE.DirectionalLight(0xff0000, 2)); // 平行光源
+        scene.add(new THREE.AmbientLight(0xA63744)); // 環境光源
+
+        
 
         tick();
 
