@@ -35,6 +35,8 @@
         scene.add(plane);
 
         // 球体を作成
+        const group = new THREE.Group();
+        scene.add(group);
         const material = new THREE.MeshNormalMaterial();
         const geometry = new THREE.SphereGeometry(30, 30, 30);
         for (let i = 0; i < 1100; i++) {
