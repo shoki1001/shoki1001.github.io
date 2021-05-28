@@ -31,6 +31,10 @@
         camera.position.set(0, 0, 1000);
         // カメラコントローラーを作成
         const controls = new THREE.OrbitControls(camera, canvasElement);
+        // 滑らかにカメラコントローラーを制御する
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.2;
+
 
 
         // グループを作成
@@ -60,6 +64,9 @@
         tick();
 
         function tick() {
+          // カメラコントローラーを更新
+          controls.update();
+
           // グループを回す
           group.rotateX(0.01);
           renderer.render(scene, camera); // レンダリング
