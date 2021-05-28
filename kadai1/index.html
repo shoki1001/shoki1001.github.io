@@ -29,8 +29,6 @@
         // カメラを作成
         const camera = new THREE.PerspectiveCamera(45, width / height);
         camera.position.set(0, 0, +1000);
-      
-
 
         // グループを作成
         const group = new THREE.Group();
@@ -59,9 +57,6 @@
         tick();
 
         function tick() {
-          // カメラコントローラーを更新
-          controls.update();
-
           // グループを回す
           group.rotateX(0.01);
           renderer.render(scene, camera); // レンダリング
