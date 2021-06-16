@@ -1,4 +1,4 @@
-<html>
+html>
   <head>
     <meta charset="utf-8" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r127/three.min.js"></script>
@@ -9,7 +9,7 @@
       function init() {
         // サイズを指定
         const width = 960;
-        const height = 540;
+        const height = 800;
 
         // レンダラーを作成
         const renderer = new THREE.WebGLRenderer({
@@ -44,7 +44,6 @@
           mesh.rotation.x = Math.random() * 2 * Math.PI;
           mesh.rotation.y = Math.random() * 2 * Math.PI;
           mesh.rotation.z = Math.random() * 2 * Math.PI;
-        
           // グループに格納する
           group.add(mesh);
         }
@@ -58,18 +57,6 @@
         tick();
 
         function tick() {
-          // 球体のワールド座標を取得する
-          const worldPosition = mesh.getWorldPosition(new THREE.Vector3());
-          // スクリーン座標を取得する
-          const projection = worldPosition.project(camera);
-          const sx = (width / 2) * (+projection.x + 1.0);
-          const sy = (height / 2) * (-projection.y + 1.0);
-
-          const tf = document.getElementById('hud');
-          // テキストフィールドにスクリーン座標を表示
-          tf.innerHTML = `👆スクリーン座標(${Math.round(sx)}, ${Math.round(sy)})`;
-          tf.style.transform = `translate(${sx}px, ${sy}px)`;
-
           // グループを回す
           group.rotateX(0.01);
           renderer.render(scene, camera); // レンダリング
